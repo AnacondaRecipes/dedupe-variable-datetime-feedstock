@@ -14,7 +14,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<37]
+  # skip s390x no dedupe
+  skip: true  # [py<37 or s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
