@@ -1,0 +1,25 @@
+From 27b81c7b825e3b1fb798018d8bb64541c628f0e2 Mon Sep 17 00:00:00 2001
+From: Lorenzo Pirritano <lpirritano@anaconda.com>
+Date: Wed, 26 Jun 2024 15:08:14 +0200
+Subject: [PATCH] fix dependencies
+
+---
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index cc0cb79..40bc918 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -7,7 +7,7 @@ name = "dedupe-variable-datetime"
+ version = "1.0.0"
+ license = {text = "The MIT License: http://www.opensource.org/licenses/mit-license.php"}
+ description = "DateTime variable type for dedupe"
+-dependencies = ["dedupe>=3.0", "datetime-distance"]
++dependencies = ["dedupe>=2.0.23", "datetime-distance"]
+ 
+ [project.urls]
+ Homepage = "https://github.com/datamade/dedupe-variable-datetime"
+-- 
+2.39.1
+
