@@ -2,4 +2,4 @@ upload_channels:
   - sfe1ed40
 
 channels:
-  - https://staging.continuum.io/prefect/fs/dedupe-feedstock/pr1/https://github.com/AnacondaRecipes/dedupe-feedstock/pull/2/commits/f7045e0
+  - https://staging.continuum.io/prefect/fs/dedupe-feedstock/pr2/f7045e0
