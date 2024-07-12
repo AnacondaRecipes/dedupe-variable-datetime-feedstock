@@ -1,38 +1,66 @@
 {% set name = "dedupe-variable-datetime" %}
-{% set version = "0.1.5" %}
-
+{% set version = "1.0.0" %}
+{% set commit_id = "fcd36afd000641168d9ae369623df866eeac35f9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/dedupe-variable-datetime-{{ version }}.tar.gz
-  sha256: 3af618c39471b046e634db5f0c4aae9e92d65217f03c5cdfc0657e6f7a42c416
+  - url: https://github.com/dedupeio/{{ name }}/archive/{{ commit_id }}.tar.gz
+    sha256: de1ce2b8f7062eabb2f52872d871ce633bcee3935cdd8359ff26abd20bedb2a8
+    patches:
+      - patches/0001-fix-dependencies.patch
+  # We requested this license file be added for future releases
+  # https://github.com/dedupeio/dedupe-variable-datetime/pull/8
+  - url: https://raw.githubusercontent.com/dedupeio/dedupe-variable-datetime/8c7f71b3fa7020ff24dc5fce080e5f6d29dd5fba/LICENSE.txt
+    sha256: 1abe7a4c390f992e8c6bc80133dc122a9bedaba03ade6bee2fdf9dc5f3a1f5c9
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  # skip s390x no dedupe
+  skip: true  # [py<37 or s390x]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
+  build:
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
+    - wheel
   run:
+    - python
     - datetime-distance
-    - future
-    - python >=3.6
+    - dedupe >=2.0.23
 
 test:
   imports:
     - dedupe.variables
+  source_files:
+    - tests
+  requires:
+    - pip
+    - pytest
+  commands:
+    - pip check
+    - pytest -v tests
 
 about:
-  home: https://github.com/datamade/dedupe-variable-datetime
-  summary: DateTime variable type for dedupe
+  home: https://github.com/dedupeio/dedupe-variable-datetime
   license: MIT
-  license_file: LICENSE
+  license_file: LICENSE.txt
+  license_family: MIT
+  summary: DateTime variable type for dedupe
+  description: |
+    DateTime variable for dedupe.
+
+    Part of the Dedupe.io cloud service and open source toolset 
+    for de-duplicating and finding fuzzy matches in your data.
+  doc_url: https://github.com/dedupeio/dedupe-variable-datetime/blob/master/README.md
+  dev_url: https://github.com/dedupeio/dedupe-variable-datetime
 
 extra:
   recipe-maintainers:
