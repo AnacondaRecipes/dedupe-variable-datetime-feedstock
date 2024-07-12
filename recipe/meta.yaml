@@ -13,7 +13,7 @@ source:
       - patches/0001-fix-dependencies.patch
   # We requested this license file be added for future releases
   # https://github.com/dedupeio/dedupe-variable-datetime/pull/8
-  - url: https://github.com/dedupeio/dedupe-variable-datetime/blob/8c7f71b3fa7020ff24dc5fce080e5f6d29dd5fba/LICENSE.txt
+  - url: https://raw.githubusercontent.com/dedupeio/dedupe-variable-datetime/8c7f71b3fa7020ff24dc5fce080e5f6d29dd5fba/LICENSE.txt
     sha256: 1abe7a4c390f992e8c6bc80133dc122a9bedaba03ade6bee2fdf9dc5f3a1f5c9
 
 build:
